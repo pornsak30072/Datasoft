@@ -32,6 +32,30 @@ public class SignUpActivity extends AppCompatActivity {
         avata3RadioButton = (RadioButton) findViewById(R.id.radioButton4);
         avata4RadioButton = (RadioButton) findViewById(R.id.radioButton5);
 
+        //Radio Controller
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.radioButton:
+                        avataString = "0";
+                        break;
+                    case R.id.radioButton2:
+                        avataString = "1";
+                        break;
+                    case R.id.radioButton3:
+                        avataString = "2";
+                        break;
+                    case R.id.radioButton4:
+                        avataString = "3";
+                        break;
+                    case R.id.radioButton5:
+                        avataString = "4";
+                        break;
+                }
+            }
+        });
+
     }   //Main Method
 
     public void ClickSignUpSign(View view) {
@@ -45,6 +69,16 @@ public class SignUpActivity extends AppCompatActivity {
         if (nameString.equals("")  ||  userString.equals("")  ||  passwordString.equals("")) {
             MyAlert myAlert = new MyAlert();
             myAlert.myDialog(this, 0, "มีช่องว่าง", "กรุณากรอกทุกช่อง");
+        } else if (avata0RadioButton.isChecked()  ||
+                avata1RadioButton.isChecked() ||
+                avata2RadioButton.isChecked() ||
+                avata3RadioButton.isChecked() ||
+                avata4RadioButton.isChecked()) {
+            //Have Check
+        } else {
+            //Un check
+            MyAlert myAlert = new MyAlert();
+            myAlert.myDialog(this, 1, "ยังไม่ได้เลือก Avata", "กรุณาเลือก Avata ด้วยครับ");
         }
 
     }   //clickSign
