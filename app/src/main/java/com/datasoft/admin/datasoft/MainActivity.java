@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Explicit โยนข้อมูลระหว่าง class
         private Context context;
-        private String myUserString, myPasswordString, truePasswordString, nameString;
+        private String myUserString, myPasswordString, truePasswordString, nameString, avataString;
         private static final String urlJSON = "http://swiftcodingthai.com/6aug/get_user_datasoft.php";
         private boolean statusABoolean = true;
 
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                         truePasswordString = jsonObject.getString("Password");
                         nameString = jsonObject.getString("Name");
                         statusABoolean = false;
+                        avataString = jsonObject.getString("Avata");
 
                     }   //if
                 }   //for
@@ -102,6 +103,14 @@ public class MainActivity extends AppCompatActivity {
                 } else if (passwordString.equals(truePasswordString)) {
                     //Password True
                     Toast.makeText(context, "Welcome " + nameString, Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                    intent.putExtra("Name", nameString);
+                    intent.putExtra("Avata", avataString);
+                    startActivity(intent);
+                    finish();
+                    //login ได้ครังเดียว
+
                 } else {
                     //Password False
                     MyAlert myAlert = new MyAlert();
